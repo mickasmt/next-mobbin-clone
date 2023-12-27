@@ -1,7 +1,6 @@
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <div>Header</div>
       <div>Carousel</div>
       <div>Browse</div>
       <div>Links like Tabs</div>
