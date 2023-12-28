@@ -1,15 +1,6 @@
-// import { Suspense } from "react";
-
 import { Navbar } from "./_components/navbar";
 
-// import { Navbar } from "./_components/navbar";
-// import { Container } from "./_components/container";
-
-const BrowseLayout = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const BrowseLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
