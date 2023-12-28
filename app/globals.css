@@ -99,6 +99,6 @@
   }
 
   .marge-x {
-    @apply px-3 min-[720px]:px-6 min-[1280px]:px-8 min-[1536px]:px-20;
+    @apply px-4 min-[720px]:px-6 min-[1280px]:px-8 min-[1536px]:px-20;
   }
 }
