@@ -2,6 +2,7 @@ import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { NavMenu } from "@/components/nav-menu";
 import Link from "next/link";
+import { NavLinks } from "@/components/nav-links";
 
 export function Navbar() {
   return (
@@ -13,15 +14,7 @@ export function Navbar() {
             <span className="text-lg font-semibold">Mobbin</span>
           </Link>
           <div className="hidden md:flex items-center gap-5">
-            <Button variant="link" size="lg" asChild>
-              <Link href="/browse/ios/apps">iOS</Link>
-            </Button>
-            <Button variant="link" size="lg" asChild>
-              <Link href="/browse/android/apps">Android</Link>
-            </Button>
-            <Button variant="link" size="lg" asChild>
-              <Link href="/browse/web/apps">Web</Link>
-            </Button>
+            <NavLinks />
           </div>
         </div>
 
@@ -33,14 +26,15 @@ export function Navbar() {
             asChild
           >
             <div>
-            <div className="flex items-center gap-x-2 px-4">
-              <Icons.search className=" size-4 md:size-5" />
-              <span className="text-sm sm:text-base text-muted-foreground/80">
-                Search on iOS...
+              <div className="flex items-center gap-x-2 px-4">
+                <Icons.search className=" size-4 md:size-5" />
+                <span className="text-sm sm:text-base text-muted-foreground/80">
+                  Search on iOS...
+                </span>
+              </div>
+              <span className="absolute right-0 top-0 hidden sm:flex h-full items-center justify-end pr-5 pointer-events-none invisible group-hover:visible group-focus:visible text-muted-foreground">
+                shortcut
               </span>
-            </div>
-            <span className="absolute right-0 top-0 hidden sm:flex h-full items-center justify-end pr-5 pointer-events-none invisible group-hover:visible group-focus:visible text-muted-foreground">shortcut</span>
-
             </div>
           </Button>
         </div>
@@ -66,15 +60,7 @@ export function Navbar() {
 
         <div className="col-span-full row-start-2 flex md:hidden">
           <div className="flex items-center py-1 md:py-0 h-11 md:h-[unset] gap-x-4 md:gap-x-6">
-            <Button variant="link" size="lg" asChild>
-              <Link href="/browse/ios/apps">iOS</Link>
-            </Button>
-            <Button variant="link" size="lg" asChild>
-              <Link href="/browse/android/apps">Android</Link>
-            </Button>
-            <Button variant="link" size="lg" asChild>
-              <Link href="/browse/web/apps">Web</Link>
-            </Button>
+            <NavLinks />
           </div>
         </div>
       </div>

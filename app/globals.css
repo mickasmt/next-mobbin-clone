@@ -20,7 +20,7 @@
   font-display: swap;
   font-family: "Basier Square";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   src: url(/fonts/basiersquare-semibold-webfont.woff2) format("woff2");
 }
 
@@ -94,11 +94,18 @@
   }
 
   body {
-    @apply bg-background text-foreground font-medium;
+    @apply bg-background text-foreground text-body;
     font-family: "Basier Square", sans-serif!important;
   }
 
+  /* Mobbin styles */
   .marge-x {
     @apply px-4 min-[720px]:px-6 min-[1280px]:px-8 min-[1536px]:px-20;
+  }
+  .text-body {
+    @apply font-medium text-base tracking-[-.008em];
+  }
+  .text-heading {
+    @apply font-semibold text-4xl tracking-[-.016em] md:text-[44px] md:leading-[48px] md:tracking-[-.024em];
   }
 }
