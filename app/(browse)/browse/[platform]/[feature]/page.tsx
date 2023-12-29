@@ -1,7 +1,7 @@
 import CarouselButtonsTags from "@/components/carousels/carousel-buttons-tags";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
 
 interface FeaturePageProps {
   params: {
@@ -13,11 +13,11 @@ interface FeaturePageProps {
 export default function FeaturePage({ params }: FeaturePageProps) {
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 -margin-x -my-1 py-1">
         <Button
           size="lg"
           variant="secondary"
-          className="hidden md:inline-flex px-4 rounded-full"
+          className="max-md:hidden px-4 rounded-full"
           asChild
         >
           <div className="flex items-center gap-x-2">
@@ -26,8 +26,10 @@ export default function FeaturePage({ params }: FeaturePageProps) {
           </div>
         </Button>
 
-        <Separator orientation="vertical" className="h-8" />
-        <CarouselButtonsTags />
+        <Separator orientation="vertical" className="max-md:hidden h-8" />
+        <div className="flex-grow -my-1 overflow-hidden">
+          <CarouselButtonsTags />
+        </div>
       </div>
 
       <div>
