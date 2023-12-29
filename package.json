@@ -16,6 +16,7 @@
     "@vercel/analytics": "^1.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "embla-carousel": "8.0.0-rc17",
     "embla-carousel-react": "8.0.0-rc17",
     "lucide-react": "^0.300.0",
     "next": "14.0.4",
