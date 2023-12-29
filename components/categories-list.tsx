@@ -16,7 +16,7 @@ export function CategoriesList() {
   const params = useParams<{ platform: string }>();
 
   return (
-    <div className="flex gap-x-6 -mx-3 px-3 md:-mx-6 md:px-6 scrollbar-none overflow-x-auto -my-1 py-1">
+    <div className="flex gap-x-6 scrollbar-none overflow-x-auto -my-1 py-1">
       {links.map((link) => (
         <Link
           key={link.path}
