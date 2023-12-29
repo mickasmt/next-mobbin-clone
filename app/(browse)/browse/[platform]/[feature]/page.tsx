@@ -1,3 +1,4 @@
+import CarouselButtonsTags from "@/components/carousels/carousel-buttons-tags";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
@@ -26,7 +27,7 @@ export default function FeaturePage({ params }: FeaturePageProps) {
         </Button>
 
         <Separator orientation="vertical" className="h-8" />
-        <div>carousel</div>
+        <CarouselButtonsTags />
       </div>
 
       <div>
