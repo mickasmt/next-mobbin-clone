@@ -110,6 +110,9 @@
   .text-heading {
     @apply font-semibold text-4xl tracking-[-.016em] md:text-[44px] md:leading-[48px] md:tracking-[-.024em];
   }
+  .text-heading-xl {
+    @apply font-semibold text-4xl tracking-[-.016em] md:text-[56px] md:leading-[64px] md:tracking-[-.024em];
+  }
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }

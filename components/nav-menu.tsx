@@ -18,7 +18,7 @@ export function NavMenu() {
         <Button
           variant="outline"
           size="lg"
-          className="w-11 cursor-pointer data-[state=open]:bg-background "
+          className="w-11 px-0 cursor-pointer data-[state=open]:bg-background "
         >
           <Icons.menu className="size-4" />
         </Button>

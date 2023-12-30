@@ -33,7 +33,7 @@ export const ButtonTag = ({ title }: ButtonTagProps) => {
         }}
         asChild
       >
-        <Button variant="outline" size="lg" className="px-4 rounded-full">
+        <Button variant="outline" size="lg" className="rounded-full">
           {title}
         </Button>
       </PopoverTrigger>

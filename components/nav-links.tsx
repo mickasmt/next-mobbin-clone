@@ -16,7 +16,7 @@ export const NavLinks = () => {
   return (
     <>
       {links.map((link) => (
-        <Button key={link.path} variant="link" size="lg" asChild>
+        <Button key={link.path} variant="link" size="lg" className="px-0" asChild>
           <Link
             href={link.path + "/" + params.feature}
             className={

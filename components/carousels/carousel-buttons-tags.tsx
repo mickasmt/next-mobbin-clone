@@ -46,7 +46,7 @@ export default function CarouselButtonsTags() {
       setTimeout(() => {
         setScrollPrev(api.canScrollPrev());
         setScrollNext(api.canScrollNext());
-      }, 550); 
+      }, 550);
     });
   }, [api]);
 
@@ -71,18 +71,18 @@ export default function CarouselButtonsTags() {
         ))}
       </CarouselContent>
       <CarouselPrevious
+        variant="ghost"
         className={cn(
           "ml-12 size-11 bg-background",
           scrollPrev ? "" : "hidden"
         )}
-        variant="ghost"
       />
       <CarouselNext
+        variant="ghost"
         className={cn(
           "mr-12 size-11 bg-background",
           scrollNext ? "" : "hidden"
         )}
-        variant="ghost"
       />
     </Carousel>
   );

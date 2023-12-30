@@ -17,7 +17,7 @@ export default function FeaturePage({ params }: FeaturePageProps) {
         <Button
           size="lg"
           variant="secondary"
-          className="max-md:hidden px-4 rounded-full"
+          className="max-md:hidden rounded-full"
           asChild
         >
           <div className="flex items-center gap-x-2">
@@ -32,9 +32,8 @@ export default function FeaturePage({ params }: FeaturePageProps) {
         </div>
       </div>
 
-      <div>
+      <div className="h-[900px]">
         {params.platform} -- {params.feature}
-        <div className="h-[900px]">sa</div>
       </div>
     </div>
   );

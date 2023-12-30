@@ -42,13 +42,13 @@ export function Navbar() {
         <div className="shrink-0 items-end">
           <div className="flex flex-row items-center justify-end gap-3">
             <div className="hidden lg:flex flex-row items-center gap-3">
-              <Button variant="ghost" size="lg" className="px-4" asChild>
+              <Button variant="ghost" size="lg" asChild>
                 <Link href="/pricing">Pricing</Link>
               </Button>
-              <Button variant="ghost" size="lg" className="px-4" asChild>
+              <Button variant="ghost" size="lg" asChild>
                 <Link href="/login">Login</Link>
               </Button>
-              <Button variant="default" size="lg" className="px-4" asChild>
+              <Button variant="default" size="lg" asChild>
                 <Link href="https://mobbin.com/" target="_blank">
                   Try Mobbin Free
                 </Link>
