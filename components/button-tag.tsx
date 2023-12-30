@@ -41,6 +41,7 @@ export const ButtonTag = ({ title }: ButtonTagProps) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className="w-[480px] h-auto rounded-2xl overflow-hidden"
+				updatePositionStrategy="always"
       >
         Place content for the popover here.
       </PopoverContent>
