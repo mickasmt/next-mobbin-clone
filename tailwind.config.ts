@@ -67,7 +67,7 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        loading: {
+        "progress-bar": {
           'from': { width: '0' },
           'to': { width: '100%' },
         },
@@ -83,7 +83,7 @@ const config: Config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "loading": "loading linear ease-out",
+        "progress-bar": "progress-bar linear ease-in-out",
         "fade": "fade 0.5s ease-in-out",
         'fade-in-out': 'fadeInOut ease-in-out'
       },

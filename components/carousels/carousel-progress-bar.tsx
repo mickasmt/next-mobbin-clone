@@ -14,7 +14,7 @@ import ClassNames from "embla-carousel-class-names";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useMounted } from "@/hooks/use-mounted";
+// import { useMounted } from "@/hooks/use-mounted";
 
 const slides = [
   {
@@ -36,7 +36,7 @@ const slides = [
 ];
 
 const BlockInfos = () => (
-  <>
+  <div className="flex flex-col mx-auto max-w-[355px] items-center justify-center gap-10 md:max-w-fit md:gap-7 md:px-6">
     <p className="max-w-[480px] px-4 text-balance text-center font-normal text-lg md:text-xl md:px-0 md:max-w-[550px]">
       <span className="hidden md:inline">
         Save hours of UI &amp; UX research with our library of 100,000+ fully
@@ -47,7 +47,7 @@ const BlockInfos = () => (
         100k+ mobile &amp; web screenshots.
       </span>
     </p>
-    <div className="flex gap-4   md:pt-4  ">
+    <div className="flex gap-4 md:pt-4">
       <Button variant="default" size="lg">
         <Link href="/">Try Mobbin Free</Link>
       </Button>
@@ -55,16 +55,16 @@ const BlockInfos = () => (
         <Link href="/">Learn more</Link>
       </Button>
     </div>
-  </>
+  </div>
 );
 
-const durationAutoplay = 4000;
+const intervalAutoplay: number = 4000;
 
 export function CarouselProgressBar() {
-  const mounted = useMounted();
+  // const mounted = useMounted();
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState<number>(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [current, setCurrent] = useState<number>(slides.length);
+  // FIX: Why slides.length ? The first dot don't show the animation progress bar if its 0. And current is set in useEffect after initial render
 
   const goToIndex = (index: number) => {
     if (!api) {
@@ -79,19 +79,17 @@ export function CarouselProgressBar() {
       return;
     }
 
-    setScrollSnaps(api.scrollSnapList());
     setCurrent(api.selectedScrollSnap());
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
-  console.log("scrollSnapList", api?.scrollSnapList());
 
-  if (!mounted)
-    return (
-      <div className="h-[420px] w-full overflow-hidden border-b-2 md:h-[480px]" />
-    );
+  // if (!mounted)
+  //   return (
+  //     <div className="h-[420px] w-full overflow-hidden border-b-2 md:h-[480px]" />
+  //   );
 
   return (
     <section className="h-[420px] w-full overflow-hidden border-b-2 md:h-[480px]">
@@ -105,7 +103,7 @@ export function CarouselProgressBar() {
         }}
         plugins={[
           Autoplay({
-            delay: durationAutoplay,
+            delay: intervalAutoplay,
             stopOnInteraction: false,
           }),
           ClassNames(),
@@ -134,36 +132,34 @@ export function CarouselProgressBar() {
         </CarouselContent>
 
         <div className="absolute z-10 h-full inset-0 flex items-center justify-center">
-          <div className="flex flex-col mx-auto max-w-[355px] items-center justify-center gap-10 md:max-w-fit md:gap-7 md:px-6">
-            <BlockInfos />
-          </div>
+          <BlockInfos />
         </div>
 
         <div className="absolute z-10 bottom-6 left-1/2 transform -translate-x-1/2">
           <div className="flex gap-3">
-            {scrollSnaps.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToIndex(index)}
-                className="relative h-[3px] w-12 overflow-hidden rounded-full"
-              >
-                <div className="w-full h-full bg-muted-foreground/70 absolute"></div>
-                <div
-                  className={cn(
-                    "h-full bg-primary relative w-0",
-                    current === index ? "animation-loading w-full" : ""
-                  )}
-                  style={
-                    current === index
-                      ? {
-                          transitionDuration: `${durationAutoplay}ms`,
-                          animationDuration: `${durationAutoplay}ms`,
-                        }
-                      : {}
-                  }
-                />
-              </button>
-            ))}
+            {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToIndex(index)}
+                  className="relative h-[3px] w-12 overflow-hidden rounded-full"
+                >
+                  <div className="w-full h-full bg-muted-foreground/30 dark:bg-muted-foreground/70 absolute"></div>
+                  <div
+                    className={cn(
+                      "h-full bg-primary relative w-0 z-10",
+                      current === index ? "animation-progress-bar w-full" : ""
+                    )}
+                    style={
+                      current === index
+                        ? {
+                            transitionDuration: `${intervalAutoplay}ms`,
+                            animationDuration: `${intervalAutoplay}ms`,
+                          }
+                        : {}
+                    }
+                  />
+                </button>
+              ))}
           </div>
         </div>
       </Carousel>
