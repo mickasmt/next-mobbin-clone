@@ -6,7 +6,7 @@ import { NavLinks } from "@/components/nav-links";
 
 export function Navbar() {
   return (
-    <header className="z-20 sticky top-0 flex h-[100px] md:h-[72px] bg-background">
+    <header className="z-20 sticky top-0 flex h-[100px] border-b md:border-transparent md:h-[72px] bg-background">
       <div className="w-full grid grid-cols-[min-content_auto_min-content] grid-rows-[1fr_auto] items-center gap-x-2 md:grid-cols-[1fr_minmax(auto,500px)_1fr] lg:grid-rows-1 marge-x">
         <div className="flex items-center gap-7">
           <Link href="/" className="flex items-center">

@@ -67,10 +67,25 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        loading: {
+          'from': { width: '0' },
+          'to': { width: '100%' },
+        },
+        fade: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeInOut: {
+          '0%, 100%': { opacity: '0' },
+          '20%, 80%': { opacity: '1' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "loading": "loading linear ease-out",
+        "fade": "fade 0.5s ease-in-out",
+        'fade-in-out': 'fadeInOut ease-in-out'
       },
     },
   },
