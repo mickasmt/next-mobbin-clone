@@ -122,6 +122,7 @@ export function CarouselProgressBar() {
                   alt={item.title}
                   width={2000}
                   height={480}
+                  priority
                 />
                 <div className="flex max-w-[355px] text-center items-center justify-center md:max-w-fit md:px-6">
                   <h1 className="px-3 md:px-0 text-heading-xl">{item.title}</h1>

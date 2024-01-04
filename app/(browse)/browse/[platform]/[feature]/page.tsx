@@ -1,3 +1,4 @@
+import { ButtonHoverCard } from "@/components/button-hover-card";
 import CarouselButtonsTags from "@/components/carousels/carousel-buttons-tags";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
@@ -28,7 +29,8 @@ export default function FeaturePage({ params }: FeaturePageProps) {
 
         <Separator orientation="vertical" className="max-md:hidden h-8" />
         <div className="flex-grow -my-1 overflow-hidden">
-          <CarouselButtonsTags />
+          {/* <CarouselButtonsTags /> */}
+          <ButtonHoverCard />
         </div>
       </div>
 
