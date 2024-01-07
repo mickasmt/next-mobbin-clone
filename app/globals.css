@@ -131,6 +131,7 @@
   }
 }
 
+/* carousel fade effect */
 .fade__container {
   transform: none !important;
   display: flex;
