@@ -86,7 +86,12 @@ export const ButtonHoverCard = () => {
   };
 
   return (
-    <div className="relative flex gap-2 py-3" onMouseLeave={handleMouseLeave}>
+    <motion.div
+      layout
+      layoutRoot
+      className="relative flex gap-2 py-3"
+      onMouseLeave={handleMouseLeave}
+    >
       {buttons.map((button, index) => (
         <HoverCard
           open={isOpen && activeButton === button}
@@ -98,28 +103,29 @@ export const ButtonHoverCard = () => {
             onMouseEnter={() => handleMouseEnter(button)}
             asChild
           >
-            <Button variant="outline" size="lg" className="rounded-full" asChild>
-            <motion.div layout>
+            <Button variant="outline" size="lg" className="rounded-full">
               {button}
-              </motion.div>
             </Button>
           </HoverCardTrigger>
 
           <HoverCardPortal>
-            {/* <AnimatePresence key={button}> */}
+            <AnimatePresence key={button}>
               {isOpen ? (
                 <HoverCardContent
                   key={button}
                   align="center"
+                  side="bottom"
                   sideOffset={12}
                   className={cn(
                     "w-full h-auto rounded-2xl border overflow-hidden max-w-[400px]"
                   )}
+                  sticky="always"
                   asChild
-                  forceMount
+                  // forceMount
                 >
                   <motion.div
                     layout
+                    layoutRoot
                     layoutId="hover"
                     variants={{
                       closed: {
@@ -131,11 +137,11 @@ export const ButtonHoverCard = () => {
                         scale: 1,
                       },
                     }}
-                    initial="closed"
+                    initial="open"
                     animate="open"
                     exit="closed"
                     transition={{
-                      duration: isOpen ? 0.5 : 0.3,
+                      duration: isOpen ? 0.5 : 0.4,
                       ease: "easeInOut",
                     }}
                   >
@@ -143,10 +149,10 @@ export const ButtonHoverCard = () => {
                   </motion.div>
                 </HoverCardContent>
               ) : null}
-            {/* </AnimatePresence> */}
+            </AnimatePresence>
           </HoverCardPortal>
         </HoverCard>
       ))}
-    </div>
+    </motion.div>
   );
 };

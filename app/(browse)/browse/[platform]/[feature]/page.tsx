@@ -14,7 +14,7 @@ interface FeaturePageProps {
 export default function FeaturePage({ params }: FeaturePageProps) {
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="flex items-center gap-4 -margin-x -my-1 py-1">
+      <div className="flex items-center gap-4 -margin-x -my-3">
         <Button
           size="lg"
           variant="secondary"
@@ -28,9 +28,9 @@ export default function FeaturePage({ params }: FeaturePageProps) {
         </Button>
 
         <Separator orientation="vertical" className="max-md:hidden h-8" />
-        <div className="flex-grow -my-1 overflow-hidden">
-          {/* <CarouselButtonsTags /> */}
-          <ButtonHoverCard />
+        <div className="flex-grow overflow-hidden">
+          <CarouselButtonsTags />
+          {/* <ButtonHoverCard /> */}
         </div>
       </div>
 
