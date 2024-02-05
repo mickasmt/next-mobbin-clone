@@ -1,4 +1,5 @@
 import { ButtonHoverCard } from "@/components/button-hover-card";
+import { CardsList } from "@/components/cards-list";
 import CarouselButtonsTags from "@/components/carousels/carousel-buttons-tags";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
@@ -35,7 +36,8 @@ export default function FeaturePage({ params }: FeaturePageProps) {
       </div>
 
       <div className="h-[900px]">
-        {params.platform} -- {params.feature}
+        {/* {params.platform} -- {params.feature} */}
+        <CardsList platform={params.platform} feature={params.feature} />
       </div>
     </div>
   );
