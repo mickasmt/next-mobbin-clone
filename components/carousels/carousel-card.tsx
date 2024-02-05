@@ -15,6 +15,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipPortal,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import React from "react";
 
 import Image from "next/image";
@@ -73,7 +81,7 @@ export default function CarouselCard() {
             className="m-0"
             opts={{
               align: "end",
-              duration: 20
+              duration: 20,
             }}
           >
             <CarouselContent className="m-0">
@@ -117,9 +125,7 @@ export default function CarouselCard() {
                   <div
                     className={cn(
                       "h-full bg-primary relative w-0 z-10",
-                      current === index + 1
-                        ? "animation-progress-bar w-full"
-                        : ""
+                      current === index + 1 ? "w-full" : ""
                     )}
                   />
                 </button>
@@ -142,48 +148,76 @@ export default function CarouselCard() {
 
           <div
             className={cn(
-              "hidden gap-x-2  group-focus-within:flex group-hover:flex transition ease-out",
-              menuOpen ? "lg:flex" : "hidden"
+              "hidden gap-x-2 group-focus-within:flex group-hover:flex transition ease-out",
+              menuOpen ? "flex" : "hidden"
             )}
           >
-            <Button size="icon" className="rounded-xl">
-              <Icons.bookmark className="h-5 w-5" />
-            </Button>
+            <TooltipProvider delayDuration={0}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size="icon"
+                    className="rounded-xl z-50"
+                    onClick={() => alert("Saved!!")}
+                  >
+                    <Icons.bookmark className="h-5 w-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipPortal>
+                  <TooltipContent sideOffset={10} className="rounded-lg text-xs">
+                    <p>Save to collections</p>
+                  </TooltipContent>
+                </TooltipPortal>
+              </Tooltip>
 
-            <DropdownMenu onOpenChange={() => setMenuOpen(!menuOpen)}>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="rounded-xl z-50"
+              <Tooltip>
+                <DropdownMenu
+                  open={menuOpen}
+                  onOpenChange={() => setMenuOpen(!menuOpen)}
                 >
-                  <Icons.options className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link
-                    className="flex justify-start items-center gap-x-2"
-                    href="/"
-                  >
-                    <Icons.download className="size-5" />
-                    <span>Download all screens</span>
-                    <Badge className="px-2 font-medium uppercase border-none">
-                      PRO
-                    </Badge>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    className="flex justify-start items-center gap-x-2"
-                    href="/"
-                  >
-                    <Icons.link className="size-5" />
-                    <span>Copy link app</span>
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="secondary"
+                        size="icon"
+                        className="rounded-xl z-50"
+                      >
+                        <Icons.options className="size-5" />
+                      </Button>
+                    </TooltipTrigger>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem asChild>
+                      <Link
+                        className="flex justify-start items-center gap-x-2"
+                        href="/"
+                      >
+                        <Icons.download className="size-5" />
+                        <span>Download all screens</span>
+                        <Badge className="px-2 font-medium uppercase border-none">
+                          PRO
+                        </Badge>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        className="flex justify-start items-center gap-x-2"
+                        href="/"
+                      >
+                        <Icons.link className="size-5" />
+                        <span>Copy link app</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                <TooltipPortal>
+                  <TooltipContent sideOffset={10} className="rounded-lg text-xs">
+                    <p>Download & Share</p>
+                  </TooltipContent>
+                </TooltipPortal>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </div>
