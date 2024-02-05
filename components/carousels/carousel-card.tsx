@@ -67,7 +67,7 @@ export default function CarouselCard() {
           priority
         />
 
-        <div className="relative rounded-3xl overflow-hidden w-full hidden md:block md:bg-foreground/5 md:group-hover:bg-foreground/10 transition duration-500 md:pt-6 md:pb-7">
+        <div className="relative rounded-[28px] overflow-hidden w-full hidden md:block md:bg-foreground/5 md:group-hover:bg-foreground/10 transition duration-300 md:pt-6 md:pb-7">
           <Carousel
             setApi={setApi}
             className="m-0"
