@@ -7,13 +7,15 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import React from "react";
 
 import Image from "next/image";
 
@@ -25,20 +27,58 @@ import Link from "next/link";
 import { useState } from "react";
 import PhoneScreen from "../../public/images/phone-screen.webp";
 
-// import DesktopScreen from "/images/phone-screen.webp";
-
 export default function CarouselCard() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [count, setCount] = React.useState(0);
+  const [current, setCurrent] = React.useState(0);
+  const [scrollPrev, setScrollPrev] = React.useState<boolean>(false);
+  const [scrollNext, setScrollNext] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+
+    api.on("select", () => {
+      setScrollPrev(api.canScrollPrev());
+      setScrollNext(api.canScrollNext());
+    });
+  }, [api]);
+
   return (
     <ContextMenuCard>
       <div className="group relative flex flex-col gap-y-3 md:gap-y-4">
         <Link href="/" className="peer absolute inset-0 z-10" />
 
-        <div className="rounded-3xl overflow-hidden w-full lg:bg-foreground/5 lg:group-hover:bg-foreground/10 transition duration-500 lg:p-10">
-          <Carousel>
-            <CarouselContent>
+        <Image
+          src={PhoneScreen}
+          alt="phone screen"
+          width={300}
+          height={800}
+          className="rounded-3xl overflow-hidden w-full h-auto md:hidden"
+          priority
+        />
+
+        <div className="relative rounded-3xl overflow-hidden w-full hidden md:block md:bg-foreground/5 md:group-hover:bg-foreground/10 transition duration-500 md:pt-6 md:pb-7">
+          <Carousel
+            setApi={setApi}
+            className="m-0"
+            opts={{
+              align: "end",
+              duration: 20
+            }}
+          >
+            <CarouselContent className="m-0">
               {Array.from({ length: 3 }).map((_, index) => (
-                <CarouselItem key={index}>
+                <CarouselItem key={index} className="px-7">
                   <Image
                     src={PhoneScreen}
                     alt="phone screen"
@@ -47,13 +87,45 @@ export default function CarouselCard() {
                     className="rounded-3xl overflow-hidden max-h-[583px]"
                     priority={index === 0 ? true : false}
                   />
-                  {/* <img src="/images/phone-screen.webp" /> */}
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="invisible group-hover:visible -mr-20 z-10" />
-            <CarouselNext className="invisible group-hover:visible z-10" />
+            <CarouselPrevious
+              variant="ghost"
+              className={cn(
+                "invisible group-hover:visible ml-14 rounded-xl size-10 bg-background z-50",
+                scrollPrev ? "" : "hidden"
+              )}
+            />
+            <CarouselNext
+              variant="ghost"
+              className={cn(
+                "invisible group-hover:visible mr-14 rounded-xl size-10 bg-background z-50",
+                scrollNext ? "" : "hidden"
+              )}
+            />
           </Carousel>
+
+          <div className="absolute z-10 bottom-3 left-1/2 transform -translate-x-1/2 invisible group-hover:visible">
+            <div className="flex gap-3">
+              {Array.from({ length: count }).map((_, index) => (
+                <button
+                  key={index}
+                  className="relative size-1.5 overflow-hidden rounded-full"
+                >
+                  <div className="w-full h-full bg-muted-foreground/30 dark:bg-muted-foreground/70 absolute"></div>
+                  <div
+                    className={cn(
+                      "h-full bg-primary relative w-0 z-10",
+                      current === index + 1
+                        ? "animation-progress-bar w-full"
+                        : ""
+                    )}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="flex items-center gap-x-3 w-full">
@@ -70,8 +142,8 @@ export default function CarouselCard() {
 
           <div
             className={cn(
-              "flex gap-x-2 md:flex invisible group-focus-within:visible group-hover:visible transition ease-out",
-              menuOpen ? "visible" : ""
+              "hidden gap-x-2  group-focus-within:flex group-hover:flex transition ease-out",
+              menuOpen ? "lg:flex" : "hidden"
             )}
           >
             <Button size="icon" className="rounded-xl">
