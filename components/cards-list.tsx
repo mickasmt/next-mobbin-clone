@@ -39,7 +39,7 @@ const AppsComponent = () => (
 const ScreensComponent = () => (
   <GridCard>
     {Array.from({ length: 10 }).map((_, index) => (
-      <CheckboxCard key={index} />
+      <CheckboxCard key={index} id={index} />
     ))}
   </GridCard>
 );
@@ -47,7 +47,7 @@ const ScreensComponent = () => (
 const UiElementsComponent = () => (
   <GridCard>
     {Array.from({ length: 10 }).map((_, index) => (
-      <div key={index}>elements</div>
+      <CheckboxCard key={index} id={index} />
     ))}
   </GridCard>
 );

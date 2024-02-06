@@ -9,6 +9,7 @@ import PhoneScreen from "../public/images/phone-screen.webp";
 
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,9 +23,22 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useCheckboxSelection } from "@/hooks/use-checkbox-selection";
 
-export function CheckboxCard() {
+export function CheckboxCard({ id }: { id: number }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedItems, setSelectedItems] = useCheckboxSelection();
+
+  const handleCheckboxChange = (item: number) => {
+    if (selectedItems.includes(item)) {
+      setSelectedItems(
+        selectedItems.filter((selectedItem) => selectedItem !== item)
+      );
+    } else {
+      setSelectedItems([...selectedItems, item]);
+    }
+  };
+
   return (
     <ContextMenuCard>
       <TooltipProvider delayDuration={0}>
@@ -48,7 +62,10 @@ export function CheckboxCard() {
               )}
             >
               <div className="flex items-center justify-between px-5">
-                <span>checkbox</span>
+                <Checkbox
+                  checked={selectedItems.includes(id)}
+                  onCheckedChange={() => handleCheckboxChange(id)}
+                />
 
                 <div
                   className={cn(
@@ -72,7 +89,11 @@ export function CheckboxCard() {
                           </Button>
                         </TooltipTrigger>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" sideOffset={5} className="w-64">
+                      <DropdownMenuContent
+                        align="end"
+                        sideOffset={5}
+                        className="w-64"
+                      >
                         <DropdownMenuItem asChild>
                           <Link
                             className="flex justify-start items-center gap-x-2"

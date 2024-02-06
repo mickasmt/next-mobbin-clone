@@ -11,20 +11,23 @@ import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { useCheckboxSelection } from "@/hooks/use-checkbox-selection";
 
 export function CheckboxToolbar() {
-  const selected = false;
+  const [selectedItems, setSelectedItems] = useCheckboxSelection();
 
   return (
     <div className="pointer-events-none fixed bottom-0 left-0 right-0 flex justify-center p-4 z-50">
       <div
         className={cn(
           "flex h-[52px] flex-row items-center justify-between pl-4 pr-2 min-w-[420px] max-w-full bg-background rounded-2xl shadow-dropdown transition duration-300 ease-in-out pointer-events-auto select-none",
-          selected ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
+          selectedItems.length > 0
+            ? "translate-y-0 opacity-100"
+            : "translate-y-16 opacity-0"
         )}
       >
         <h2 className="overflow-hidden overflow-ellipsis whitespace-nowrap text-body-medium-bold text-fg-primary">
-          0 selected
+          {selectedItems.length} selected
         </h2>
 
         <div className="flex flex-row gap-2 pl-4">
@@ -35,7 +38,9 @@ export function CheckboxToolbar() {
                   size="sm"
                   variant="outline"
                   className="w-full text-sm rounded-xl z-50"
-                  onClick={() => alert("Clear!!")}
+                  onClick={() => {
+                    setSelectedItems([]);
+                  }}
                 >
                   Clear all
                 </Button>
