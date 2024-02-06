@@ -35,7 +35,7 @@ import Link from "next/link";
 import { useState } from "react";
 import PhoneScreen from "../../public/images/phone-screen.webp";
 
-export default function CarouselCard() {
+export function CarouselCard() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [api, setApi] = React.useState<CarouselApi>();
   const [count, setCount] = React.useState(0);

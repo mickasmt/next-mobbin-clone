@@ -1,4 +1,5 @@
-import CarouselCard from "./carousels/carousel-card";
+import { CarouselCard } from "./carousels/carousel-card";
+import { CheckboxCard } from "./checkbox-card";
 
 interface CardsListProps {
   platform: string;
@@ -13,13 +14,44 @@ const GridCard = ({ children }: { children: React.ReactNode }) => (
     {children}
   </div>
 );
-  
+
+const FeatureComponent = ({ feature }: { feature: string }) => {
+  switch (feature) {
+    case "apps":
+      return <AppsComponent />;
+    case "screens":
+      return <ScreensComponent />;
+    case "ui-elements":
+      return <UiElementsComponent />;
+    default:
+      return null; // Vous pouvez également retourner un composant par défaut ou ne rien rendre.
+  }
+};
+
+const AppsComponent = () => (
+  <GridCard>
+    {Array.from({ length: 10 }).map((_, index) => (
+      <CarouselCard key={index} />
+    ))}
+  </GridCard>
+);
+
+const ScreensComponent = () => (
+  <GridCard>
+    {Array.from({ length: 10 }).map((_, index) => (
+      <CheckboxCard key={index} />
+    ))}
+  </GridCard>
+);
+
+const UiElementsComponent = () => (
+  <GridCard>
+    {Array.from({ length: 10 }).map((_, index) => (
+      <div key={index}>elements</div>
+    ))}
+  </GridCard>
+);
+
 export function CardsList({ platform, feature }: CardsListProps) {
-  return (
-    <GridCard>
-      {Array.from({ length: 10 }).map((_, index) => (
-        <CarouselCard key={index} />
-      ))}
-    </GridCard>
-  );
+  return <FeatureComponent feature={feature} />;
 }

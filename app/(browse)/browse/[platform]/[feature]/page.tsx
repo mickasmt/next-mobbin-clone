@@ -31,12 +31,10 @@ export default function FeaturePage({ params }: FeaturePageProps) {
         <Separator orientation="vertical" className="max-md:hidden h-8" />
         <div className="flex-grow overflow-hidden">
           <CarouselButtonsTags />
-          {/* <ButtonHoverCard /> */}
         </div>
       </div>
 
       <div className="h-[900px]">
-        {/* {params.platform} -- {params.feature} */}
         <CardsList platform={params.platform} feature={params.feature} />
       </div>
     </div>
