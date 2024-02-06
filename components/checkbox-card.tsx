@@ -43,30 +43,46 @@ export function CheckboxCard({ id }: { id: number }) {
     <ContextMenuCard>
       <TooltipProvider delayDuration={0}>
         <div className="group relative flex flex-col gap-y-3 md:gap-y-4">
-          <Link href="/" className="peer absolute inset-0 z-10" />
-
           <div className="relative rounded-[28px] overflow-hidden w-full">
             <Image
               src={PhoneScreen}
               alt="phone screen"
               width={300}
               height={800}
-              className="rounded-3xl overflow-hidden w-full h-auto max-h-[680px]"
+              className="rounded-[28px] overflow-hidden w-full h-auto max-h-[680px]"
               priority
+            />
+
+            <Link
+              href="/"
+              className={cn(
+                "peer absolute inset-0 z-10 rounded-[28px] overflow-hidden",
+                selectedItems.includes(id) && "border-2 border-blue-400"
+              )}
             />
 
             <div
               className={cn(
-                "absolute z-50 top-4 w-full inset-x-0 group-hover:visible",
+                "absolute z-50 top-4 left-4 group-hover:visible",
+                menuOpen || selectedItems.includes(id) ? "visible" : "invisible"
+              )}
+            >
+              <Checkbox
+                className={cn(
+                  "size-9 border-2 rounded-full overflow-hidden data-[state=checked]:border-blue-400 data-[state=checked]:bg-blue-400 data-[state=checked]:text-white"
+                )}
+                checked={selectedItems.includes(id)}
+                onCheckedChange={() => handleCheckboxChange(id)}
+              />
+            </div>
+
+            <div
+              className={cn(
+                "absolute z-40 top-4 w-full inset-x-0 group-hover:visible",
                 menuOpen ? "visible" : "invisible"
               )}
             >
-              <div className="flex items-center justify-between px-5">
-                <Checkbox
-                  checked={selectedItems.includes(id)}
-                  onCheckedChange={() => handleCheckboxChange(id)}
-                />
-
+              <div className="flex items-center justify-end px-4">
                 <div
                   className={cn(
                     "gap-x-2 group-focus-within:flex group-hover:flex transition ease-out",
@@ -133,6 +149,17 @@ export function CheckboxCard({ id }: { id: number }) {
                 </div>
               </div>
             </div>
+
+            <div
+              className={cn(
+                "hidden md:block absolute inset-0 z-0 pointer-events-none select-none opacity-0 group-hover:opacity-100 transition-opacity ease-out",
+                menuOpen ? "opacity-100" : "opacity-0"
+              )}
+              style={{
+                background:
+                  "linear-gradient(rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 20.83%, rgba(21, 21, 21, 0) 79.17%, rgba(21, 21, 21, 0.5) 100%)",
+              }}
+            />
 
             <div
               className={cn(
