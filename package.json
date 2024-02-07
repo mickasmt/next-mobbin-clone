@@ -26,14 +26,14 @@
     "embla-carousel-class-names": "8.0.0-rc22",
     "embla-carousel-react": "8.0.0-rc22",
     "framer-motion": "^10.17.0",
-    "jotai": "^2.6.4",
     "lucide-react": "^0.300.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "^20",

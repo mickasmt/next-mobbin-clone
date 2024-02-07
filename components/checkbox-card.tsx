@@ -27,17 +27,8 @@ import { useCheckboxSelection } from "@/hooks/use-checkbox-selection";
 
 export function CheckboxCard({ id }: { id: number }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useCheckboxSelection();
-
-  const handleCheckboxChange = (item: number) => {
-    if (selectedItems.includes(item)) {
-      setSelectedItems(
-        selectedItems.filter((selectedItem) => selectedItem !== item)
-      );
-    } else {
-      setSelectedItems([...selectedItems, item]);
-    }
-  };
+  const useSelection = useCheckboxSelection();
+  const items = useSelection.selectedItems;
 
   return (
     <ContextMenuCard>
@@ -57,22 +48,22 @@ export function CheckboxCard({ id }: { id: number }) {
               href="/"
               className={cn(
                 "peer absolute inset-0 z-10 rounded-[28px] overflow-hidden",
-                selectedItems.includes(id) && "border-2 border-blue-400"
+                items.includes(id) && "border-2 border-blue-400"
               )}
             />
 
             <div
               className={cn(
                 "absolute z-50 top-4 left-5 group-hover:visible",
-                menuOpen || selectedItems.includes(id) ? "visible" : "invisible"
+                menuOpen || items.includes(id) ? "visible" : "invisible"
               )}
             >
               <Checkbox
                 className={cn(
                   "size-9 border-2 border-white rounded-full overflow-hidden data-[state=checked]:border-blue-400 data-[state=checked]:bg-blue-400 data-[state=checked]:text-white"
                 )}
-                checked={selectedItems.includes(id)}
-                onCheckedChange={() => handleCheckboxChange(id)}
+                checked={items.includes(id)}
+                onCheckedChange={() => useSelection.toggleItem(id)}
               />
             </div>
 

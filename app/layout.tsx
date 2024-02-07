@@ -1,9 +1,10 @@
 import { Analytics } from "@/components/analytics";
+import { CheckboxToolbar } from "@/components/checkbox-toolbar";
+import { ModalProvider } from "@/components/modal-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import "./globals.css";
-import { CheckboxToolbar } from "@/components/checkbox-toolbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
           <CheckboxToolbar />
+          <ModalProvider />
           <TailwindIndicator />
           <Analytics />
         </ThemeProvider>

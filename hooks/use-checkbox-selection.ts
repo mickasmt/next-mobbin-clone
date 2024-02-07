@@ -1,7 +1,18 @@
-import { useAtom, atom } from "jotai";
+import { create } from "zustand";
 
-const selectedItemsAtom = atom<number[]>([]);
+type CheckboxSelectionStore = {
+  selectedItems: number[];
+  toggleItem: (item: number) => void;
+  clearSelection: () => void;
+};
 
-export function useCheckboxSelection() {
-  return useAtom(selectedItemsAtom);
-}
+export const useCheckboxSelection = create<CheckboxSelectionStore>((set) => ({
+  selectedItems: [],
+  toggleItem: (item) =>
+    set((state) => ({
+      selectedItems: state.selectedItems.includes(item)
+        ? state.selectedItems.filter((i) => i !== item)
+        : [...state.selectedItems, item],
+    })),
+  clearSelection: () => set({ selectedItems: [] }),
+}));

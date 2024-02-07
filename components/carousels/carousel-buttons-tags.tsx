@@ -22,7 +22,7 @@ import { ScreensContent } from "@/components/hover-card-content";
 import { categories } from "@/lib/_data";
 import { HoverCardPortal } from "@radix-ui/react-hover-card";
 
-export default function CarouselButtonsTags() {
+export function CarouselButtonsTags() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [scrollPrev, setScrollPrev] = React.useState<boolean>(false);
   const [scrollNext, setScrollNext] = React.useState<boolean>(true);
