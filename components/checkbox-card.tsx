@@ -63,13 +63,13 @@ export function CheckboxCard({ id }: { id: number }) {
 
             <div
               className={cn(
-                "absolute z-50 top-4 left-4 group-hover:visible",
+                "absolute z-50 top-4 left-5 group-hover:visible",
                 menuOpen || selectedItems.includes(id) ? "visible" : "invisible"
               )}
             >
               <Checkbox
                 className={cn(
-                  "size-9 border-2 rounded-full overflow-hidden data-[state=checked]:border-blue-400 data-[state=checked]:bg-blue-400 data-[state=checked]:text-white"
+                  "size-9 border-2 border-white rounded-full overflow-hidden data-[state=checked]:border-blue-400 data-[state=checked]:bg-blue-400 data-[state=checked]:text-white"
                 )}
                 checked={selectedItems.includes(id)}
                 onCheckedChange={() => handleCheckboxChange(id)}
@@ -99,9 +99,9 @@ export function CheckboxCard({ id }: { id: number }) {
                           <Button
                             variant="secondary"
                             size="icon"
-                            className="rounded-xl z-50 bg-transparent hover:bg-transparent"
+                            className="rounded-xl z-50 bg-transparent hover:bg-transparent invert dark:invert-0"
                           >
-                            <Icons.options className="size-5" />
+                            <Icons.options className="size-6" />
                           </Button>
                         </TooltipTrigger>
                       </DropdownMenuTrigger>
@@ -157,7 +157,7 @@ export function CheckboxCard({ id }: { id: number }) {
               )}
               style={{
                 background:
-                  "linear-gradient(rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 20.83%, rgba(21, 21, 21, 0) 79.17%, rgba(21, 21, 21, 0.5) 100%)",
+                  "linear-gradient(rgba(21, 21, 21, 0.4) 0%, rgba(21, 21, 21, 0) 20.83%, rgba(21, 21, 21, 0) 79.17%, rgba(21, 21, 21, 0.4) 100%)",
               }}
             />
 
@@ -172,7 +172,7 @@ export function CheckboxCard({ id }: { id: number }) {
                   <TooltipTrigger asChild>
                     <Button
                       size="sm"
-                      className="w-full rounded-xl z-50"
+                      className="w-full rounded-xl z-50 invert dark:invert-0"
                       onClick={() => alert("Copied!!")}
                     >
                       Copy
@@ -192,7 +192,7 @@ export function CheckboxCard({ id }: { id: number }) {
                   <TooltipTrigger asChild>
                     <Button
                       size="sm"
-                      className="w-full rounded-xl z-50"
+                      className="w-full rounded-xl z-50 invert dark:invert-0"
                       onClick={() => alert("Saved!!")}
                     >
                       Save
