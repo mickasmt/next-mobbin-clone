@@ -54,7 +54,7 @@ export function CheckboxCard({ id }: { id: number }) {
 
             <div
               className={cn(
-                "absolute z-50 top-4 left-5 group-hover:visible",
+                "absolute z-[45] top-4 left-5 group-hover:visible",
                 menuOpen || items.includes(id) ? "visible" : "invisible"
               )}
             >

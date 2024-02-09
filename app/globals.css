@@ -159,3 +159,34 @@
   z-index: 1;
   transition: opacity 0.8s;
 }
+
+/* Search command dialog */
+.search-command [cmdk-input-wrapper] {
+  @apply rounded-full bg-secondary text-secondary-foreground px-5 mx-3;
+}
+
+.search-command [cmdk-input-wrapper] svg {
+  @apply !text-white;
+}
+
+.search-command [cmdk-input-wrapper] input {
+  @apply text-sm sm:text-base;
+}
+
+.search-command [cmdk-list-sizer] {
+  @apply flex flex-col gap-y-6 !size-full !max-h-full;
+}
+
+.search-command [cmdk-group-heading] {
+  @apply !text-sm !px-0 mb-2.5;
+}
+
+.group[data-selected=true] .md\:group-data-selected\:-translate-y-5 {
+  @apply -translate-y-5;
+}
+
+.data-selected[data-selected=true] .data-selected-bg {
+  @apply !bg-foreground/20;
+}
+
+/* flex flex-col items-center gap-y-4 min-720:absolute min-720:inset-0 min-720:group-hover:-translate-y-20 min-720:group-data-selected:-translate-y-20 transition-transform duration-300 ease-out */
