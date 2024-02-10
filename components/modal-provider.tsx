@@ -1,6 +1,6 @@
 "use client";
 
-import { SearchModal } from "@/components/modals/search-modal";
+import { SearchCommandDialog } from "@/components/modals/search-command-dialog";
 import { useMounted } from "@/hooks/use-mounted";
 
 export const ModalProvider = () => {
@@ -12,7 +12,7 @@ export const ModalProvider = () => {
 
   return (
     <>
-      <SearchModal />
+      <SearchCommandDialog />
       {/* add your own modals here... */}
     </>
   );

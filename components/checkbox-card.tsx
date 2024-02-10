@@ -45,7 +45,7 @@ export function CheckboxCard({ id }: { id: number }) {
             />
 
             <Link
-              href="/"
+              href="#"
               className={cn(
                 "peer absolute inset-0 z-10 rounded-[28px] overflow-hidden",
                 items.includes(id) && "border-2 border-blue-400"

@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/hover-card";
 // import { cn } from "@/lib/utils";
 import { ScreensContent } from "@/components/hover-card-content";
-import { categories } from "@/lib/_data";
+import { categoriesList } from "@/lib/_data";
 import { HoverCardPortal } from "@radix-ui/react-hover-card";
 
 export function CarouselButtonsTags() {
@@ -75,7 +75,7 @@ export function CarouselButtonsTags() {
         </CarouselItem>
 
         {/* Tags buttons */}
-        {categories.map((category) => (
+        {categoriesList.map((category) => (
           <CarouselItem
             key={category}
             className="basis-auto pl-2 first:pl-5 last:pr-1"

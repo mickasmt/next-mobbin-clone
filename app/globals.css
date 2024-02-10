@@ -174,7 +174,7 @@
 }
 
 .search-command [cmdk-list-sizer] {
-  @apply flex flex-col gap-y-6 !size-full !max-h-full;
+  @apply flex flex-col gap-y-6 !size-full !max-h-full !pb-6;
 }
 
 .search-command [cmdk-group-heading] {

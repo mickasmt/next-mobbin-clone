@@ -1,113 +1,58 @@
 "use client";
 
+import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { useSearchModal } from "@/hooks/use-search-modal";
+import { CommandGroup, CommandItem } from "@/components/ui/command";
+import { categoriesCommand } from "@/lib/_data";
 import { cn } from "@/lib/utils";
-
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-
+import SquareLogo from "@/public/images/square-logo.webp";
 import Image from "next/image";
-import React from "react";
-import SquareLogo from "../../public/images/square-logo.webp";
-import { Icons } from "../icons";
-import { ScrollArea } from "../ui/scroll-area";
 
-export function SearchModal() {
-  const searchModal = useSearchModal();
+interface CommandCategoriesListProps {
+  category: string;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  React.useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        searchModal.onOpen();
-      }
-    };
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
-
+export function CommandCategoriesList({
+  category,
+  setCategory,
+}: CommandCategoriesListProps) {
   return (
-    <CommandDialog
-      open={searchModal.isOpen}
-      onOpenChange={searchModal.onClose}
-      className={cn(
-        "max-w-full h-full md:max-h-[720px] sm:max-w-[816px] !rounded-none md:!rounded-3xl md:!top-[41.5%]",
-        "data-[state=closed]:max-md:!slide-out-to-bottom-5 data-[state=open]:max-md:!slide-in-from-bottom-5",
-        "data-[state=closed]:max-md:!zoom-out-100 data-[state=open]:max-md:!zoom-in-100",
-        "search-command pt-3"
-      )}
-    >
-      <CommandInput placeholder="Search on iOS..." />
-
-      <CommandEmpty>No results found.</CommandEmpty>
-
-      <section className="flex pl-3 pt-2 h-full">
-        <aside className="hidden w-60 shrink-0 flex-col items-stretch gap-y-1 pt-3 pb-5 md:flex">
-          <Button
-            variant="ghost"
-            className="flex items-center justify-start gap-x-3 py-2 pl-2 pr-3 h-14"
-          >
-            <div className="flex justify-center items-center border size-10 rounded-xl bg-background">
-              <Icons.billing className="size-4" />
-            </div>
-            <span>Button</span>
-          </Button>
-
-          <Button
-            variant="ghost"
-            className="flex items-center justify-start gap-x-3 py-2 pl-2 pr-3 h-14"
-          >
-            <div className="flex justify-center items-center border size-10 rounded-xl bg-background">
-              <Icons.billing className="size-4" />
-            </div>
-            <span>Button</span>
-          </Button>
-          <Button
-            variant="ghost"
-            className="flex items-center justify-start gap-x-3 py-2 pl-2 pr-3 h-14"
-          >
-            <div className="flex justify-center items-center border size-10 rounded-xl bg-background">
-              <Icons.billing className="size-4" />
-            </div>
-            <span>Button</span>
-          </Button>
-          <Button
-            variant="ghost"
-            className="flex items-center justify-start gap-x-3 py-2 pl-2 pr-3 h-14"
-          >
-            <div className="flex justify-center items-center border size-10 rounded-xl bg-background">
-              <Icons.billing className="size-4" />
-            </div>
-            <span>Button</span>
-          </Button>
-        </aside>
-
-        <ScrollArea>
-          <CommandList className="relative size-full !max-h-none px-3 pb-20">
-            <CommandItem className="absolute inset-0 z-0 !bg-transparent !text-transparent">
-              hidden item
-            </CommandItem>
-
-            <TrendingApps />
-            <Screens />
-            <UiElements />
-            <Flows />
-            <TextInScreenshot />
-          </CommandList>
-        </ScrollArea>
-      </section>
-    </CommandDialog>
+    <aside className="hidden w-60 shrink-0 flex-col items-stretch gap-y-1.5 pt-3 pb-5 md:flex">
+      {categoriesCommand.map(({ key, label, icon }) => (
+        <Button
+          key={key}
+          variant="ghost"
+          className={cn(
+            "flex items-center justify-start gap-x-3 py-2 pl-2 pr-3 h-14 focus-visible:ring-1",
+            category === key ? "bg-accent" : ""
+          )}
+          onClick={() => setCategory(key)}
+          tabIndex={-1}
+        >
+          <div className="flex justify-center items-center border size-10 rounded-xl bg-background">
+            {icon}
+          </div>
+          {label}
+        </Button>
+      ))}
+    </aside>
   );
 }
 
-function TrendingApps() {
+export function Trending() {
+  return (
+    <>
+      <Apps />
+      <Screens />
+      <UiElements />
+      <Flows />
+      <TextInScreenshot />
+    </>
+  );
+}
+
+function Apps() {
   return (
     <CommandGroup heading="Apps">
       <div className="flex gap-x-2">
@@ -166,8 +111,7 @@ function UiElements() {
           >
             <Button
               variant="secondary"
-              size="sm"
-              className="text-sm px-4 data-selected-bg"
+              className="max-md:text-sm px-4 rounded-full data-selected-bg"
               tabIndex={-1}
             >
               Lorem {index}
@@ -210,8 +154,7 @@ function TextInScreenshot() {
           >
             <Button
               variant="secondary"
-              size="sm"
-              className="text-sm px-4 data-selected-bg"
+              className="max-md:text-sm px-4 rounded-full data-selected-bg"
               tabIndex={-1}
             >
               Screenshot {index}
