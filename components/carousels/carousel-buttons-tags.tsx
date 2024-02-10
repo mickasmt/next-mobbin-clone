@@ -33,7 +33,7 @@ export function CarouselButtonsTags() {
     }
 
     api.on("select", () => {
-      // change ms if you update duration on Carousel
+      // add duration for hiding arrows after carousel slide animation
       setTimeout(() => {
         setScrollPrev(api.canScrollPrev());
         setScrollNext(api.canScrollNext());

@@ -166,7 +166,7 @@
 }
 
 .search-command [cmdk-input-wrapper] svg {
-  @apply !text-white;
+  @apply !text-foreground !opacity-100;
 }
 
 .search-command [cmdk-input-wrapper] input {

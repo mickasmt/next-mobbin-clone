@@ -11,7 +11,12 @@ import {
   CommandList,
 } from "@/components/ui/command";
 
-import { CommandCategoriesList, Trending } from "@/components/command-content";
+import {
+  CommandCategoriesList,
+  ItemsLines,
+  ItemsLinesHoverCard,
+  Trending,
+} from "@/components/command-content";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React, { useEffect } from "react";
 import { categoriesCommand } from "@/lib/_data";
@@ -23,18 +28,20 @@ export function SearchCommandDialog() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        searchModal.onOpen();
-      }
+      if (searchModal.isOpen) {
+        if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault();
+          searchModal.onOpen();
+        }
 
-      if (e.key === "Tab") {
-        e.preventDefault();
-        const currentIndex = categoriesCommand.findIndex(
-          (item) => item.key === category
-        );
-        const nextIndex = (currentIndex + 1) % categoriesCommand.length;
-        setCategory(categoriesCommand[nextIndex].key);
+        if (e.key === "Tab") {
+          e.preventDefault();
+          const currentIndex = categoriesCommand.findIndex(
+            (item) => item.key === category
+          );
+          const nextIndex = (currentIndex + 1) % categoriesCommand.length;
+          setCategory(categoriesCommand[nextIndex].key);
+        }
       }
     };
 
@@ -63,41 +70,40 @@ export function SearchCommandDialog() {
         onValueChange={setSearch}
       />
 
-      <CommandEmpty>No results found.</CommandEmpty>
-
       <section className="flex pl-3 pt-2 h-full overflow-hidden">
-        <CommandCategoriesList category={category} setCategory={setCategory} />
+        {!search ? (
+          <>
+            <CommandCategoriesList
+              category={category}
+              setCategory={setCategory}
+            />
 
-        <ScrollArea>
-          <CommandList className="relative size-full !max-h-none px-3 pb-10">
-            <CommandItem className="absolute inset-0 z-0 !bg-transparent !text-transparent">
-              hidden item
-            </CommandItem>
+            <ScrollArea>
+              <CommandList className="relative size-full !max-h-none pr-2 md:px-3 pb-10">
+                <CommandItem className="absolute inset-0 z-0 !bg-transparent !text-transparent">
+                  hidden item
+                </CommandItem>
 
-            {category === "trending" && <Trending />}
+                {category === "trending" && <Trending />}
 
-            {category === "screens" && (
-              <>
-                <CommandItem>Screens 1</CommandItem>
-                <CommandItem>Screens 2</CommandItem>
-              </>
-            )}
+                {category === "screens" && (
+                  <ItemsLinesHoverCard title="Screens" />
+                )}
 
-            {category === "ui-elements" && (
-              <>
-                <CommandItem>ui element 1</CommandItem>
-                <CommandItem>ui element 2</CommandItem>
-              </>
-            )}
+                {category === "ui-elements" && (
+                  <ItemsLines title="UI Elements" />
+                )}
 
-            {category === "flows" && (
-              <>
-                <CommandItem>Flows 1</CommandItem>
-                <CommandItem>Flows 2</CommandItem>
-              </>
-            )}
-          </CommandList>
-        </ScrollArea>
+                {category === "flows" && <ItemsLines title="Flows" />}
+              </CommandList>
+            </ScrollArea>
+          </>
+        ) : (
+          <>
+            <span>search list</span>
+            <CommandEmpty>No results found.</CommandEmpty>
+          </>
+        )}
       </section>
     </CommandDialog>
   );

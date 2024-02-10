@@ -1,12 +1,21 @@
 "use client";
 
+import { ScreensContent } from "@/components/hover-card-content";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { CommandGroup, CommandItem } from "@/components/ui/command";
-import { categoriesCommand } from "@/lib/_data";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { categoriesCommand, categoriesList } from "@/lib/_data";
 import { cn } from "@/lib/utils";
 import SquareLogo from "@/public/images/square-logo.webp";
+import { HoverCardPortal } from "@radix-ui/react-hover-card";
 import Image from "next/image";
+import { useState } from "react";
 
 interface CommandCategoriesListProps {
   category: string;
@@ -52,10 +61,101 @@ export function Trending() {
   );
 }
 
+export function ItemsLines({ title }: { title: string }) {
+  return (
+    <CommandGroup
+      heading={title}
+      className="!px-0 [&_[cmdk-group-heading]]:!px-4 [&_[cmdk-group-heading]]:!pb-0"
+    >
+      <div className="flex gap-0 w-full flex-wrap">
+        {categoriesList.map((category, index) => (
+          <CommandItem
+            key={category}
+            className="w-full cursor-pointer rounded-xl !px-4 !py-2 data-selected"
+          >
+            <span className="grow truncate text-base font-medium">
+              {category}
+            </span>
+            <span className="text-sm text-muted-foreground">
+              {(index + 1) * 17}
+            </span>
+          </CommandItem>
+        ))}
+      </div>
+    </CommandGroup>
+  );
+}
+
+export function ItemsLinesHoverCard({ title }: { title: string }) {
+  // const { isDesktop } = useMediaQuery();
+  const [open, setOpen] = useState(false);
+  const [selectedCat, setSelectedCat] = useState("");
+
+  const handleItemHover = (category: string) => {
+    setOpen(true);
+    setSelectedCat(category);
+    console.log(category);
+
+    // if (!isDesktop) setOpen(false);
+  };
+
+  return (
+    <CommandGroup
+      heading={title}
+      className="!px-0 [&_[cmdk-group-heading]]:!px-4 [&_[cmdk-group-heading]]:!pb-0"
+    >
+      <div className="flex gap-0 w-full flex-wrap">
+        {categoriesList.map((category, index) => (
+          <HoverCard
+            open={open && selectedCat === category}
+            openDelay={0}
+            closeDelay={0}
+            key={category}
+          >
+            <HoverCardTrigger asChild>
+              <CommandItem
+                className={cn(
+                  "w-full cursor-pointer rounded-xl !px-4 !py-2",
+                  selectedCat === category ? "bg-accent" : ""
+                )}
+                onKeyDown={() => handleItemHover(category)}
+                onMouseOver={() => handleItemHover(category)}
+                key={category}
+              >
+                <span className="grow truncate text-base font-medium">
+                  {category}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {(index + 1) * 19}
+                </span>
+              </CommandItem>
+            </HoverCardTrigger>
+
+            <HoverCardPortal>
+              <HoverCardContent
+                // hidden={true}
+                collisionPadding={10}
+                align="start"
+                side="right"
+                sideOffset={20}
+                className={cn(
+                  "w-full h-auto rounded-2xl border overflow-hidden max-w-[400px]"
+                )}
+              >
+                <ScreensContent name={category} />
+              </HoverCardContent>
+            </HoverCardPortal>
+          </HoverCard>
+        ))}
+      </div>
+    </CommandGroup>
+  );
+}
+
 function Apps() {
   return (
     <CommandGroup heading="Apps">
-      <div className="flex gap-x-2">
+      <div className="shrink-0 flex gap-x-2">
         {Array.from({ length: 7 }).map((_, index) => (
           <CommandItem key={index} className="group !p-0 !bg-transparent">
             <div className="shrink-0 z-10 rounded-t-2xl overflow-hidden md:h-16">
