@@ -24,7 +24,7 @@ export function CommandCategoriesList({
           key={key}
           variant="ghost"
           className={cn(
-            "flex items-center justify-start gap-x-3 py-2 pl-2 pr-3 h-14 focus-visible:ring-1",
+            "flex items-center justify-start gap-x-3 py-2 pl-2 pr-3 h-14 focus-visible:ring-0",
             category === key ? "bg-accent" : ""
           )}
           onClick={() => setCategory(key)}
