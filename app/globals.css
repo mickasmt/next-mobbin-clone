@@ -181,7 +181,7 @@
   @apply !text-sm !px-0 mb-2.5;
 }
 
-.group[data-selected=true] .md\:group-data-selected\:-translate-y-5 {
+.group[data-selected=true] .group-data-selected\:-translate-y-5 {
   @apply -translate-y-5;
 }
 

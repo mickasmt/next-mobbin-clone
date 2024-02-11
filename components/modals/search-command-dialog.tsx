@@ -28,12 +28,12 @@ export function SearchCommandDialog() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (searchModal.isOpen) {
-        if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-          e.preventDefault();
-          searchModal.onOpen();
-        }
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        searchModal.onOpen();
+      }
 
+      if (searchModal.isOpen) {
         if (e.key === "Tab") {
           e.preventDefault();
           const currentIndex = categoriesCommand.findIndex(
@@ -57,7 +57,7 @@ export function SearchCommandDialog() {
       open={searchModal.isOpen}
       onOpenChange={searchModal.onClose}
       className={cn(
-        "max-w-full h-full md:max-h-[720px] sm:max-w-[816px] !rounded-none md:!rounded-3xl md:!top-[41.5%]",
+        "max-w-full h-full md:max-h-[calc(100vh-8px)] md:h-[720px] sm:max-w-[816px] !rounded-none md:!rounded-3xl md:top-[41.5%]",
         "data-[state=closed]:max-md:!slide-out-to-bottom-5 data-[state=open]:max-md:!slide-in-from-bottom-5",
         "data-[state=closed]:max-md:!zoom-out-100 data-[state=open]:max-md:!zoom-in-100",
         "search-command pt-3"
@@ -87,14 +87,16 @@ export function SearchCommandDialog() {
                 {category === "trending" && <Trending />}
 
                 {category === "screens" && (
-                  <ItemsLinesHoverCard title="Screens" />
+                  <ItemsLinesHoverCard title="Screens -- Hover Card" />
                 )}
 
                 {category === "ui-elements" && (
-                  <ItemsLines title="UI Elements" />
+                  <ItemsLinesHoverCard title="UI Elements -- Hover Card" />
                 )}
 
-                {category === "flows" && <ItemsLines title="Flows" />}
+                {category === "flows" && (
+                  <ItemsLines title="Flows -- NOT Hover Card" />
+                )}
               </CommandList>
             </ScrollArea>
           </>

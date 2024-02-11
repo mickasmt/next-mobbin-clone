@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import SquareLogo from "@/public/images/square-logo.webp";
 import { HoverCardPortal } from "@radix-ui/react-hover-card";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CommandCategoriesListProps {
   category: string;
@@ -27,7 +27,7 @@ export function CommandCategoriesList({
   setCategory,
 }: CommandCategoriesListProps) {
   return (
-    <aside className="hidden w-60 shrink-0 flex-col items-stretch gap-y-1.5 pt-3 pb-5 md:flex">
+    <aside className="hidden w-60 shrink-0 flex-col items-stretch gap-y-1 pt-3 pb-5 md:flex">
       {categoriesCommand.map(({ key, label, icon }) => (
         <Button
           key={key}
@@ -87,16 +87,19 @@ export function ItemsLines({ title }: { title: string }) {
 }
 
 export function ItemsLinesHoverCard({ title }: { title: string }) {
-  // const { isDesktop } = useMediaQuery();
   const [open, setOpen] = useState(false);
   const [selectedCat, setSelectedCat] = useState("");
+  const isLargeDesktop = useMediaQuery("(min-width: 1440px)");
+
+  useEffect(() => {
+    if (selectedCat && isLargeDesktop) {
+      setOpen(true);
+    } else setOpen(false);
+  }, [selectedCat, isLargeDesktop]);
 
   const handleItemHover = (category: string) => {
-    setOpen(true);
+    if(isLargeDesktop) setOpen(true);
     setSelectedCat(category);
-    console.log(category);
-
-    // if (!isDesktop) setOpen(false);
   };
 
   return (
@@ -109,7 +112,6 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
           <HoverCard
             open={open && selectedCat === category}
             openDelay={0}
-            closeDelay={0}
             key={category}
           >
             <HoverCardTrigger asChild>
@@ -118,7 +120,7 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
                   "w-full cursor-pointer rounded-xl !px-4 !py-2",
                   selectedCat === category ? "bg-accent" : ""
                 )}
-                onKeyDown={() => handleItemHover(category)}
+                // onKeyDown={() => handleItemHover(category)}
                 onMouseOver={() => handleItemHover(category)}
                 key={category}
               >
@@ -133,13 +135,14 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
 
             <HoverCardPortal>
               <HoverCardContent
-                // hidden={true}
-                collisionPadding={10}
+                collisionPadding={8}
+                avoidCollisions={false}
                 align="start"
+                // updatePositionStrategy="always"
                 side="right"
                 sideOffset={20}
                 className={cn(
-                  "w-full h-auto rounded-2xl border overflow-hidden max-w-[400px]"
+                  "rounded-2xl border w-[--radix-hover-card-content-available-width] min-w-[296px] max-w-[400px]"
                 )}
               >
                 <ScreensContent name={category} />
@@ -155,7 +158,7 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
 function Apps() {
   return (
     <CommandGroup heading="Apps">
-      <div className="shrink-0 flex gap-x-2">
+      <div className="flex flex-nowrap gap-x-2 [&_[cmdk-item]]:shrink-0">
         {Array.from({ length: 7 }).map((_, index) => (
           <CommandItem key={index} className="group !p-0 !bg-transparent">
             <div className="shrink-0 z-10 rounded-t-2xl overflow-hidden md:h-16">
