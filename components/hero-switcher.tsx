@@ -11,6 +11,7 @@ export function HeroCheckbox() {
     <DropdownMenuCheckboxItem
       checked={isChecked}
       onCheckedChange={toggleCheckbox}
+      className="cursor-pointer"
     >
       Static Hero
     </DropdownMenuCheckboxItem>

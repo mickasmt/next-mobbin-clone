@@ -26,6 +26,9 @@ Inspired by the clean design of mobbbin.com, I am recreating its essence using t
 
 Components mainly used: Carousel, CommandDialog, Dropdown Menu, HoverCard, Checkbox.
 
+> [!NOTE]  
+> This project contains UI Only - Just for testing shadcn's components.
+
 ## Installation
 
 Clone & create this repo locally with the following command:
@@ -46,14 +49,14 @@ pnpm install
 pnpm dev
 ```
 
-> [!NOTE]  
-> This project contains UI Only - Just for testing shadcn's components.
-
 ## Roadmap
 
 - [ ] Fix fade carousel after resize screen
 - [ ] Fix collision for Hover Card on Y axis in search command dialog
-- [ ] Add framer-motion on Hover Card on carousel buttons tags
+- [ ] Detect keyboard for to display HoverCard in search command dialog
+- [ ] Add framer-motion on HoverCard on carousel buttons tags
+- [ ] Add auth pages
+- [ ] Add pricing page
 
 
 ## Tech Stack + Features
