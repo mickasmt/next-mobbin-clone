@@ -17,9 +17,10 @@ import {
   ItemsLinesHoverCard,
   Trending,
 } from "@/components/command-content";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import React, { useEffect } from "react";
 import { categoriesCommand } from "@/lib/_data";
+import React, { useEffect } from "react";
 
 export function SearchCommandDialog() {
   const searchModal = useSearchModal();
@@ -60,15 +61,26 @@ export function SearchCommandDialog() {
         "max-w-full h-full md:max-h-[calc(100vh-8px)] md:h-[720px] sm:max-w-[816px] !rounded-none md:!rounded-3xl md:top-[41.5%]",
         "data-[state=closed]:max-md:!slide-out-to-bottom-5 data-[state=open]:max-md:!slide-in-from-bottom-5",
         "data-[state=closed]:max-md:!zoom-out-100 data-[state=open]:max-md:!zoom-in-100",
-        "search-command pt-3"
+        "search-command pt-1.5 md:pt-3"
       )}
     >
-      <CommandInput
-        placeholder="Search on iOS..."
-        autoFocus
-        value={search}
-        onValueChange={setSearch}
-      />
+      <div className="flex items-center gap-x-0 w-full [&_[cmdk-input-wrapper]]:flex [&_[cmdk-input-wrapper]]:grow">
+        <CommandInput
+          placeholder="Search on iOS..."
+          autoFocus
+          value={search}
+          onValueChange={setSearch}
+          className="!h-10 md:!h-12"
+        />
+
+        <Button
+          variant="ghost"
+          className="block md:hidden hover:!bg-transparent pl-0"
+          onClick={searchModal.onClose}
+        >
+          Cancel
+        </Button>
+      </div>
 
       <section className="flex pl-3 pt-2 size-full overflow-hidden">
         {!search ? (
