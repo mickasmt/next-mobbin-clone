@@ -4,7 +4,7 @@ import { HeroHomepage } from "@/components/hero-homepage";
 const BrowseLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      {/* <CarouselProgressBar /> */}
+      <CarouselProgressBar />
       {/* <HeroHomepage /> */}
       {children}
     </>
