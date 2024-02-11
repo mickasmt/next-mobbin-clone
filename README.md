@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<a href="https://next-mobbin-clone.vercel.app">
+  <img alt="next mobbin clone" src="public/og.jpg">
+  <h1 align="center">Next Mobbin Clone</h1>
+</a>
 
-## Getting Started
+<p align="center">
+  <a href="https://twitter.com/miickasmt">
+    <img src="https://img.shields.io/twitter/follow/miickasmt?style=flat&label=miickasmt&logo=twitter&color=0bf&logoColor=fff" alt="Mickasmt Twitter follower count" />
+  </a>
+</p>
 
-First, run the development server:
+<p align="center">
+  <a href="#introduction"><strong>Introduction</strong></a> ·
+  <a href="#installation"><strong>Installation</strong></a> ·
+  <a href="#tech-stack--features"><strong>Tech Stack + Features</strong></a> ·
+  <a href="#author"><strong>Author</strong></a> ·
+  <a href="#credits"><strong>Credits</strong></a>
+</p>
+<br/>
+
+## Introduction
+
+This project has been undertaken with the goal of enhancing my skills in user interface (UI) development and putting the cutting-edge features of shadcn-ui to the test. 
+<br/>
+Inspired by the clean design of mobbbin.com, I am recreating its essence using the powerful Next.js 14 framework to optimize the visual experience.
+
+Components mainly used: Carousel, CommandDialog, Dropdown Menu, HoverCard, Checkbox.
+
+## Installation
+
+Clone & create this repo locally with the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app my-name-project --example "https://github.com/mickasmt/next-mobbin-clone"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Install dependencies using pnpm:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Start the development server:
 
-## Learn More
+```sh
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+> [!NOTE]  
+> This project contains UI Only - Just for testing shadcn's components.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Roadmap
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [ ] Fix fade carousel after resize screen
+- [ ] Fix collision for Hover Card on Y axis in search command dialog
+- [ ] Add framer-motion on Hover Card on carousel buttons tags
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack + Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+video link
+
+### Frameworks
+
+- [Next.js](https://nextjs.org/) – React framework for building performant apps with the best developer experience
+
+### Platforms
+
+- [Vercel](https://vercel.com/) – Easily preview & deploy changes with git
+
+### UI
+
+- [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework for rapid UI development
+- [Shadcn/ui](https://ui.shadcn.com/) – Re-usable components built using Radix UI and Tailwind CSS
+- [Framer Motion](https://framer.com/motion) – Motion library for React to animate components with ease
+- [Lucide](https://lucide.dev/) – Beautifully simple, pixel-perfect icons
+- [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) – Optimize custom fonts and remove external network requests for improved performance
+- [`ImageResponse`](https://nextjs.org/docs/app/api-reference/functions/image-response) – Generate dynamic Open Graph images at the edge
+
+### Code Quality
+
+- [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
+- [Prettier](https://prettier.io/) – Opinionated code formatter for consistent code style
+- [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
+
+### Miscellaneous
+
+- [Vercel Analytics](https://vercel.com/analytics) – Track unique visitors, pageviews, and more in a privacy-friendly way
+
+## Author
+
+Created by [@miickasmt](https://twitter.com/miickasmt) in 2024, released under the [MIT license](https://github.com/shadcn/taxonomy/blob/main/LICENSE.md).
+
+## Credits
+
+This project was inspired by the [Mobbin](https://mobbin.com/)'s website. 
