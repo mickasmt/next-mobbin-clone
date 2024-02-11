@@ -1,5 +1,5 @@
 <a href="https://next-mobbin-clone.vercel.app">
-  <img alt="next mobbin clone" src="public/og.jpg">
+  <img alt="next mobbin clone" src="public/og.png">
   <h1 align="center">Next Mobbin Clone</h1>
 </a>
 
