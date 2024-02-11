@@ -150,7 +150,7 @@
   transition: opacity 1s;
 }
 
-.fade__is-ready .fade__slide  {
+.fade__is-ready .fade__slide {
   position: absolute;
 }
 
@@ -181,8 +181,10 @@
   @apply !text-sm !px-0 mb-2.5;
 }
 
-.group[data-selected=true] .group-data-selected\:-translate-y-5 {
-  @apply -translate-y-5;
+@media (min-width: 768px) {
+  .group[data-selected=true] .md\:group-data-selected\:-translate-y-5 {
+    @apply -translate-y-5;
+  }
 }
 
 .data-selected[data-selected=true] .data-selected-bg {

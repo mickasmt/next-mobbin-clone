@@ -70,7 +70,7 @@ export function SearchCommandDialog() {
         onValueChange={setSearch}
       />
 
-      <section className="flex pl-3 pt-2 h-full overflow-hidden">
+      <section className="flex pl-3 pt-2 size-full overflow-hidden">
         {!search ? (
           <>
             <CommandCategoriesList
@@ -78,7 +78,7 @@ export function SearchCommandDialog() {
               setCategory={setCategory}
             />
 
-            <ScrollArea>
+            <ScrollArea className="w-full">
               <CommandList className="relative size-full !max-h-none pr-2 md:px-3 pb-10">
                 <CommandItem className="absolute inset-0 z-0 !bg-transparent !text-transparent">
                   hidden item

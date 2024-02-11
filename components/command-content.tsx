@@ -98,6 +98,7 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
   }, [selectedCat, isLargeDesktop]);
 
   const handleItemHover = (category: string) => {
+    console.log(category)
     if(isLargeDesktop) setOpen(true);
     setSelectedCat(category);
   };
@@ -120,7 +121,7 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
                   "w-full cursor-pointer rounded-xl !px-4 !py-2",
                   selectedCat === category ? "bg-accent" : ""
                 )}
-                // onKeyDown={() => handleItemHover(category)}
+                // ={(e) => console.log(e.currentTarget.dataset.selected)}
                 onMouseOver={() => handleItemHover(category)}
                 key={category}
               >
@@ -160,7 +161,7 @@ function Apps() {
     <CommandGroup heading="Apps">
       <div className="flex flex-nowrap gap-x-2 [&_[cmdk-item]]:shrink-0">
         {Array.from({ length: 7 }).map((_, index) => (
-          <CommandItem key={index} className="group !p-0 !bg-transparent">
+          <CommandItem key={index} className="group !p-0 md:!bg-transparent rounded-t-2xl">
             <div className="shrink-0 z-10 rounded-t-2xl overflow-hidden md:h-16">
               <div className="flex flex-col items-center gap-y-1 md:group-hover:-translate-y-5 md:group-data-selected:-translate-y-5 transition-transform duration-300 ease-out cursor-pointer">
                 <Image
