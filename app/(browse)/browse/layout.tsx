@@ -1,11 +1,10 @@
-import { CarouselProgressBar } from "@/components/carousels/carousel-progress-bar";
-import { HeroHomepage } from "@/components/hero-homepage";
+import { HerosComponent } from "@/components/hero-switcher";
+
 
 const BrowseLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <CarouselProgressBar />
-      {/* <HeroHomepage /> */}
+      <HerosComponent />
       {children}
     </>
   );

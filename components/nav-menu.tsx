@@ -10,6 +10,7 @@ import {
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
+import { HeroCheckbox } from "./hero-switcher";
 
 export function NavMenu() {
   return (
@@ -34,6 +35,7 @@ export function NavMenu() {
             <span>Collections</span>
           </Link>
         </DropdownMenuItem>
+        <HeroCheckbox />
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <ThemeToggle />
