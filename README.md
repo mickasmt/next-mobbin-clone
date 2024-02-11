@@ -61,7 +61,7 @@ pnpm dev
 
 ## Tech Stack + Features
 
-video link
+https://github.com/mickasmt/next-mobbin-clone/assets/62285783/098dc343-a3b1-4d9b-9574-7723eeba5611
 
 ### Frameworks
 
