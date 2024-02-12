@@ -38,7 +38,6 @@ import PhoneScreen from "../../public/images/phone-screen.webp";
 export function CarouselCard() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [api, setApi] = React.useState<CarouselApi>();
-  const [count, setCount] = React.useState(0);
   const [current, setCurrent] = React.useState(0);
   const [scrollPrev, setScrollPrev] = React.useState<boolean>(false);
   const [scrollNext, setScrollNext] = React.useState<boolean>(true);
@@ -48,7 +47,6 @@ export function CarouselCard() {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
     api.on("select", () => {
@@ -116,7 +114,7 @@ export function CarouselCard() {
 
           <div className="absolute z-10 bottom-3 left-1/2 transform -translate-x-1/2 invisible group-hover:visible">
             <div className="flex gap-3">
-              {Array.from({ length: count }).map((_, index) => (
+              {Array.from({ length: 3 }).map((_, index) => (
                 <button
                   key={index}
                   className="relative size-1.5 overflow-hidden rounded-full"
@@ -164,7 +162,10 @@ export function CarouselCard() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipPortal>
-                  <TooltipContent sideOffset={10} className="rounded-lg text-xs">
+                  <TooltipContent
+                    sideOffset={10}
+                    className="rounded-lg text-xs"
+                  >
                     <p>Save to collections</p>
                   </TooltipContent>
                 </TooltipPortal>
@@ -212,7 +213,10 @@ export function CarouselCard() {
                 </DropdownMenu>
 
                 <TooltipPortal>
-                  <TooltipContent sideOffset={10} className="rounded-lg text-xs">
+                  <TooltipContent
+                    sideOffset={10}
+                    className="rounded-lg text-xs"
+                  >
                     <p>Download & Share</p>
                   </TooltipContent>
                 </TooltipPortal>
