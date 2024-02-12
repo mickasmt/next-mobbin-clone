@@ -90,6 +90,7 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
   const [open, setOpen] = useState(false);
   const [selectedCat, setSelectedCat] = useState("");
   const isLargeDesktop = useMediaQuery("(min-width: 1440px)");
+  const customBoundary = document.querySelector("#hc-boundary");
 
   useEffect(() => {
     if (selectedCat && isLargeDesktop) {
@@ -98,8 +99,7 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
   }, [selectedCat, isLargeDesktop]);
 
   const handleItemHover = (category: string) => {
-    console.log(category)
-    if(isLargeDesktop) setOpen(true);
+    if (isLargeDesktop) setOpen(true);
     setSelectedCat(category);
   };
 
@@ -111,19 +111,19 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
       <div className="flex gap-0 w-full flex-wrap">
         {categoriesList.map((category, index) => (
           <HoverCard
-            open={open && selectedCat === category}
             openDelay={0}
+            open={open && selectedCat === category}
             key={category}
           >
             <HoverCardTrigger asChild>
               <CommandItem
-                className={cn(
-                  "w-full cursor-pointer rounded-xl !px-4 !py-2",
-                  selectedCat === category ? "bg-accent" : ""
-                )}
-                // ={(e) => console.log(e.currentTarget.dataset.selected)}
-                onMouseOver={() => handleItemHover(category)}
                 key={category}
+                value={category}
+                className={cn(
+                  "w-full cursor-pointer rounded-xl !px-4 !py-2"
+                  // selectedCat === category ? "bg-accent" : ""
+                )}
+                onMouseEnter={() => handleItemHover(category)}
               >
                 <span className="grow truncate text-base font-medium">
                   {category}
@@ -137,9 +137,8 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
             <HoverCardPortal>
               <HoverCardContent
                 collisionPadding={8}
-                avoidCollisions={false}
+                collisionBoundary={customBoundary}
                 align="start"
-                // updatePositionStrategy="always"
                 side="right"
                 sideOffset={20}
                 className={cn(
@@ -161,7 +160,10 @@ function Apps() {
     <CommandGroup heading="Apps">
       <div className="flex flex-nowrap gap-x-2 [&_[cmdk-item]]:shrink-0">
         {Array.from({ length: 7 }).map((_, index) => (
-          <CommandItem key={index} className="group !p-0 md:!bg-transparent rounded-t-2xl">
+          <CommandItem
+            key={index}
+            className="group !p-0 md:!bg-transparent rounded-t-2xl"
+          >
             <div className="shrink-0 z-10 rounded-t-2xl overflow-hidden md:h-16">
               <div className="flex flex-col items-center gap-y-1 md:group-hover:-translate-y-5 md:group-data-selected:-translate-y-5 transition-transform duration-300 ease-out cursor-pointer">
                 <Image

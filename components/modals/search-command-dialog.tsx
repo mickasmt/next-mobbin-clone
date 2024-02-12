@@ -92,11 +92,14 @@ export function SearchCommandDialog() {
 
             <ScrollArea className="w-full">
               <CommandList className="relative size-full !max-h-none pr-2 md:px-3 pb-10">
-                <CommandItem className="absolute inset-0 z-0 !bg-transparent !text-transparent">
-                  hidden item
-                </CommandItem>
-
-                {category === "trending" && <Trending />}
+                {category === "trending" && (
+                  <>
+                    <CommandItem className="absolute inset-0 z-0 !bg-transparent !text-transparent">
+                      hidden item
+                    </CommandItem>
+                    <Trending />
+                  </>
+                )}
 
                 {category === "screens" && (
                   <ItemsLinesHoverCard title="Screens -- Hover Card" />

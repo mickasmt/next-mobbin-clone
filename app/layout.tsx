@@ -25,6 +25,7 @@ export default function RootLayout({
           <ModalProvider />
           <TailwindIndicator />
           <Analytics />
+          <div className="fixed left-1/2 right-0 top-0 h-[728px] max-h-screen" id="hc-boundary"/>
         </ThemeProvider>
       </body>
     </html>

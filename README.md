@@ -51,9 +51,9 @@ pnpm dev
 
 ## Roadmap
 
-- [ ] Fix fade carousel after resize screen
-- [ ] Fix collision for Hover Card on Y axis in search command dialog
+- [x] ~Fix collision for Hover Card on Y axis in search command dialog~
 - [ ] Detect keyboard for to display HoverCard in search command dialog
+- [ ] Fix fade carousel after resize screen
 - [ ] Add framer-motion on HoverCard on carousel buttons tags
 - [ ] Add auth pages
 - [ ] Add pricing page
