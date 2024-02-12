@@ -58,7 +58,7 @@ export function SearchCommandDialog() {
       open={searchModal.isOpen}
       onOpenChange={searchModal.onClose}
       className={cn(
-        "max-w-full h-full md:max-h-[calc(100vh-8px)] md:h-[720px] sm:max-w-[816px] !rounded-none md:!rounded-3xl md:top-[41.5%]",
+        "max-w-full h-full md:max-h-[calc(100vh-8px)] md:h-[720px] sm:max-w-[816px] !rounded-none md:!rounded-3xl md:top-0 md:!translate-y-0",
         "data-[state=closed]:max-md:!slide-out-to-bottom-5 data-[state=open]:max-md:!slide-in-from-bottom-5",
         "data-[state=closed]:max-md:!zoom-out-100 data-[state=open]:max-md:!zoom-in-100",
         "search-command pt-1.5 md:pt-3"
