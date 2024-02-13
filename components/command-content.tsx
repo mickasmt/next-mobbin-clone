@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import SquareLogo from "@/public/images/square-logo.webp";
 import { HoverCardPortal } from "@radix-ui/react-hover-card";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface CommandCategoriesListProps {
   category: string;
@@ -87,21 +87,46 @@ export function ItemsLines({ title }: { title: string }) {
 }
 
 export function ItemsLinesHoverCard({ title }: { title: string }) {
-  const [open, setOpen] = useState(false);
   const [selectedCat, setSelectedCat] = useState("");
+  const prevDataValueRef = useRef<string | null>(null);
   const isLargeDesktop = useMediaQuery("(min-width: 1440px)");
   const customBoundary = document.querySelector("#hc-boundary");
 
   useEffect(() => {
-    if (selectedCat && isLargeDesktop) {
-      setOpen(true);
-    } else setOpen(false);
-  }, [selectedCat, isLargeDesktop]);
+    const handleMutation = (mutations: MutationRecord[]) => {
+      mutations.forEach(() => {
+        const selectedCommandItem = document.querySelector(
+          ".command-item[data-selected=true]"
+        );
 
-  const handleItemHover = (category: string) => {
-    if (isLargeDesktop) setOpen(true);
-    setSelectedCat(category);
-  };
+        if (selectedCommandItem) {
+          const dataValue = selectedCommandItem.getAttribute("data-value");
+
+          if (dataValue && dataValue !== prevDataValueRef.current) {
+            prevDataValueRef.current = dataValue;
+            setSelectedCat(dataValue);
+          }
+        }
+      });
+    };
+
+    const targetNodes = document.querySelectorAll(".command-item");
+    const observer = new MutationObserver(handleMutation);
+    const config = {
+      attributes: true,
+      attributeFilter: ["data-selected"],
+      childList: false,
+      subtree: false,
+    };
+
+    targetNodes.forEach((node) => {
+      observer.observe(node, config);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <CommandGroup
@@ -112,18 +137,16 @@ export function ItemsLinesHoverCard({ title }: { title: string }) {
         {categoriesList.map((category, index) => (
           <HoverCard
             openDelay={0}
-            open={open && selectedCat === category}
             key={category}
+            open={isLargeDesktop && selectedCat === category.toLowerCase()}
           >
             <HoverCardTrigger asChild>
               <CommandItem
                 key={category}
                 value={category}
                 className={cn(
-                  "w-full cursor-pointer rounded-xl !px-4 !py-2"
-                  // selectedCat === category ? "bg-accent" : ""
+                  "w-full cursor-pointer rounded-xl !px-4 !py-2 command-item"
                 )}
-                onMouseEnter={() => handleItemHover(category)}
               >
                 <span className="grow truncate text-base font-medium">
                   {category}
